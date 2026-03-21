@@ -3,9 +3,22 @@ const express = require('express')
 // Configurar la pp
 const app = express()
 
-// Definir una ruta
+// Definir una ruta usando req=request y res=response
+// enviar respuestas tipo json
 app.get('/', (req, res)=>{
-    res.send('Hola, estoy desde http://localhost:4000/ en ubuntu')
+    const product = [
+        {
+            id:1,
+            price:30,
+            name:'laptop'
+        },
+        {
+            id:2,
+            price:50,
+            name:'monitor'
+        },
+    ]
+    res.json(product)
 })
 
 
