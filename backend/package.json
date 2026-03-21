@@ -8,5 +8,8 @@
     "dev": "node --watch index.js"
   },
   "author": "Rigoberto Xocoxic desde ubuntu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
