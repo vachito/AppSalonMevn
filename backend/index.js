@@ -1,8 +1,12 @@
 import express from 'express'
+import { db } from './config/db.js'
 import servicesRoutes from './routes/servicesRoutes.js'
 
 // Configurar la pp
 const app = express()
+
+//conectar a la base de datos
+db()
 
 // Definir una ruta usando req=request y res=response
 // enviar respuestas tipo json
