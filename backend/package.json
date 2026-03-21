@@ -1,6 +1,7 @@
 {
   "name": "appsalon_mevn_backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "usando express",
   "main": "index.js",
   "scripts": {

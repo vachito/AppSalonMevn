@@ -1,10 +1,11 @@
-const express = require('express')
+import express from 'express'
 
 // Configurar la pp
 const app = express()
 
 // Definir una ruta usando req=request y res=response
 // enviar respuestas tipo json
+
 app.get('/', (req, res)=>{
     const product = [
         {
