@@ -10,6 +10,9 @@ dotenv.config()
 // Configurar la pp
 const app = express()
 
+//leer datos via body
+app.use(express.json())
+
 //conectar a la base de datos
 db()
 
