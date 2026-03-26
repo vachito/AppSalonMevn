@@ -20,8 +20,13 @@ const createService = async (req, res) =>{
     }
 }
 
-const getServices = (req, res)=>{
-    res.json(services)
+const getServices =async (req, res)=>{
+    try {
+        const services = await Service.find()
+        res.json(services)
+    } catch (error) {
+        console.log(error.message)
+    }
 }
 
 const getServiceById= async(req,res)=>{

@@ -3,9 +3,13 @@ import { createService, getServices, getServiceById, updateSerice, deleteSerice 
 
 const router = express.Router()
 
-router.post('/', createService)
-router.get('/', getServices)
-router.get('/:id',getServiceById)
-router.put('/:id',updateSerice)
-router.delete('/:id',deleteSerice)
+router.route('/')
+    .post(createService)
+    .get(getServices)
+    
+router.route('/:id')
+    .get(getServiceById)
+    .put(updateSerice)
+    .delete(deleteSerice)
+
 export default router
