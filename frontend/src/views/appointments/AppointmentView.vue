@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+    import { FormatearMoneda } from '@/helpers';
     import SelectedService from '@/components/SelectedService.vue';
     import { useAppointmentsStore } from '@/stores/appointments';
 
@@ -11,11 +12,20 @@
 
     <h3 class="text-3xl font-extrabold text-white">Servicios</h3>
 
-    <div class="grid gap-5">
-        <SelectedService
-            v-for="service in appointment.services"
-            :key="service._id"
-            :service="service"
-        />
+    <p v-if="appointment.noServicesSelected" class=" text-white text-2xl text-center">No hay servicios seleccionadod</p>
+
+    <div v-else>
+        <div class="grid gap-5">
+            <SelectedService
+                v-for="service in appointment.services"
+                :key="service._id"
+                :service="service"
+            />
+        </div>
+    
+        <p class=" text-right text-white text-2xl">
+            Total a pagar: 
+            <span class=" font-black">{{ FormatearMoneda(appointment.totalAmount) }}</span>
+        </p>
     </div>
 </template>
