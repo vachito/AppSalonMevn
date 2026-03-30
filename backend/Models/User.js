@@ -1,5 +1,5 @@
 import mongosse from "mongoose";
-import { uniqueId } from "../utils";
+import { uniqueId } from "../utils/index.js";
 
 const userSchema = mongosse.Schema({
   name: {
