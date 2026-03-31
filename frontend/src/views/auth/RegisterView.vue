@@ -1,15 +1,36 @@
 <script setup>
-
+    import { inject } from 'vue';
+    import { reset } from '@formkit/vue';
+    import AuthApi from '@/api/AuthApi';
+    const toast = inject('toast')
+    
+    const handleSubmit = async ({password_confirm, ...data}) =>{
+        try {
+            const result = await AuthApi.register(data)
+            toast.open({
+                message: result.data.msg,
+                type:'success'
+            })
+            reset('registerForm')
+        } catch (error) {
+            toast.open({
+                message: error.response.data.msg,
+                type:'error'
+            })
+        }
+    }
 </script>
 
 <template>
-    <h1 class=" text-6xl font-extrabold text-white text-center mt-10">Crea una cuenta</h1>
-    <p class=" text-2xl text-white text-center my-5">Crea una cuenta en AppSalón</p>
+    <h1 class=" text-4xl font-extrabold text-white text-center mt-10">Crea una cuenta</h1>
+    <p class=" text-xl text-white text-center my-5">Crea una cuenta en AppSalón</p>
 
     <FormKit
+        id="registerForm"
         type="form"
         :actions="false"
         incomplete-message="No se pudo enviar los datos, revisa las notificaciones"
+        @submit="handleSubmit"
     >
         <FormKit
             type="text"

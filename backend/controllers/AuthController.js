@@ -35,7 +35,7 @@ const register = async (req,res) =>{
             email,
             token
         })
-        res.json({msg: 'El usuario se creo, correctamente, revita tu email'})
+        res.json({msg: 'El usuario se creo correctamente, revita tu email'})
     } catch (error) {
         console.log(error)
     }

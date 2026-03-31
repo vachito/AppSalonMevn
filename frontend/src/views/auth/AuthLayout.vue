@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <div class=" mx-auto lg:w-3/5 mt-20">
+    <div class=" mx-auto lg:w-2/5 mt-20">
         <h1>Desde authLayout</h1>
         <RouterView/>
 
