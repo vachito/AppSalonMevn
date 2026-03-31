@@ -1,12 +1,15 @@
 <script setup>
     import AuthApi from '@/api/AuthApi';
     import { inject } from 'vue';
-    
+    import { useRouter } from 'vue-router';
+
+    const router=useRouter()
     const toast = inject('toast')
     const handleSubmit = async(formData) =>{
         try {
-            const {data} = await AuthApi.login(formData)
-            console.log(data)
+            const {data: {token}} = await AuthApi.login(formData)
+            localStorage.setItem('auth_token',token)
+            router.push({name:'my-appointments'})
         } catch (error) {
             toast.open({
                 message: error.response.data.msg,
@@ -38,7 +41,7 @@
                 length:'Email no valido'
             }"
         />
-
+  
         <FormKit
             type="password"
             label="Password"

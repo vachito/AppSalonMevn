@@ -14,9 +14,9 @@
             </div>
 
             <nav class="flex gap-2 items-center justify-end">
-                <button class="p-3 text-gray-200 uppercase text-xs font-black rounded-lg">
+                <RouterLink :to="{name:'my-appointments'}" class="p-3 text-gray-200 uppercase text-xs font-black rounded-lg">
                     Mis Citas
-                </button>
+                </RouterLink>
 
                 <RouterLink :to="{name:'new-appointment'}" class="p-3 text-gray-200 uppercase text-xs font-black rounded-lg bg-blue-700">
                     Nueva Cita
