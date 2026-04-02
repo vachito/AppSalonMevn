@@ -4,7 +4,7 @@ const appointmentSchema = mongoose.Schema({
     services: [
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref: 'Services'
+            ref: 'Service'
         }
     ],
     date:{
