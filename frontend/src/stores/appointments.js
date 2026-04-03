@@ -30,6 +30,11 @@ export const useAppointmentsStore = defineStore('appointments',()=>{
         appointmentsByDate.value = data
     })
 
+    function setSelectedAppointment(appointment){
+        console.log(appointment)
+        services.value=appointment.services
+    }
+
     function onServiceSelected(service){
         if(services.value.some(ser => ser._id === service._id)){
             services.value = services.value.filter(ser => ser._id !== service._id)
@@ -109,6 +114,7 @@ export const useAppointmentsStore = defineStore('appointments',()=>{
         totalAmount,
         noServicesSelected,
         isDateSelected,
-        disableTime
+        disableTime,
+        setSelectedAppointment
     }
 })
