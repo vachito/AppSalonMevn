@@ -10,7 +10,7 @@ export const useUserStore = defineStore('user', ()=>{
     const userAppointments = ref([])
     const loading = ref(true)
 
-    onMounted(async ()=>{
+     onMounted(async ()=>{
         try {
             const {data: {user: userData} } = await AuthApi.auth()
             user.value=userData 
