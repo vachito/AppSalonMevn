@@ -14,6 +14,6 @@ export default {
         return api.get(`/appointments/${id}`)
     },
     update(id,data){
-        return api.put(`/appointment/${id}`,data)
+        return api.put(`/appointments/${id}`,data)
     }   
 }

@@ -42,6 +42,7 @@ export const useUserStore = defineStore('user', ()=>{
         logout,
         loading,
         getUserName,
-        noAppointments
+        noAppointments,
+        getUserAppointments
     }
 })
