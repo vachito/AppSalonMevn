@@ -101,6 +101,24 @@ export const useAppointmentsStore = defineStore('appointments', () => {
     return (id) => services.value.some((ser) => ser._id === id)
   })
 
+  async function cancelAppointment(id) {
+    if(confirm('¿Deseas cancelar esta cita')){
+      try {
+        const {data} = await AppointmentApi.delete(id)
+        toast.open({
+          message: data.msg,
+          type: 'info'
+        })
+        await userStore.getUserAppointments()
+      } catch (error) {
+        toast.open({
+          message: error.response.data.msg,
+          type: 'error'
+        })
+      }
+    }
+  }
+
   const noServicesSelected = computed(() => services.value.length === 0)
 
   const totalAmount = computed(() => {
@@ -143,6 +161,7 @@ export const useAppointmentsStore = defineStore('appointments', () => {
     disableTime,
     setSelectedAppointment,
     appoimentId,
-    resetState
+    resetState,
+    cancelAppointment
   }
 })

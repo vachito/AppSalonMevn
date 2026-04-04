@@ -93,9 +93,37 @@ const updateAppointment = async (req, res) => {
     console.log(error)
   }
 };
+
+const deleteAppointment = async (req,res) => {
+  const { id } = req.params;
+
+  //validar por object id
+  if (validateObjectId(id, res)) return;
+
+  //validar que exista la cita
+  const appointment = await Appointment.findById(id).populate("services");
+  if (!appointment) {
+    return handleNotFoundError("La cita no existe", res);
+  }
+
+  //validar que la cita pertenezca al usuario autenticado
+  if (appointment.user.toString() !== req.user._id.toString()) {
+    const error = new Error("No tienes permiso para ver esta cita");
+    return res.status(403).json({ msg: error.message });
+  }
+
+  try {
+    await appointment.deleteOne()
+    res.json({msg: 'Cita cancelada Correctamente'})
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   createAppointment,
   getAppointmentByDate,
   getAppointmentById,
   updateAppointment,
+  deleteAppointment
 };

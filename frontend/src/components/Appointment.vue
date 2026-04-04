@@ -1,7 +1,9 @@
 <script setup>
+    import { useAppointmentsStore } from '@/stores/appointments';
     import { displayDate } from '@/helpers/date';
     import { FormatearMoneda } from '@/helpers';
 
+    const appointmentStore = useAppointmentsStore()
     defineProps({
         appointment:{
             type:Object
@@ -34,7 +36,8 @@
     
             <button
                 class="bg-red-600 rounded-lg p-3 text-white text-sm uppercase font-black flex-1 md:flex-none"
-            >Cancelar Cita</button>
+                @click="appointmentStore.cancelAppointment(appointment._id)"
+                >Cancelar Cita</button>
         </div>
     </div>
 </template>
