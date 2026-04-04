@@ -5,6 +5,7 @@ import { convertToISO, convertToDDMMYYYY } from "@/helpers/date";
 import { useRouter } from "vue-router";
 
 export const useAppointmentsStore = defineStore('appointments',()=>{
+    const appoimentId = ref('')
     const services = ref([])
     const date = ref('')
     const hours = ref([])
@@ -27,13 +28,21 @@ export const useAppointmentsStore = defineStore('appointments',()=>{
         if(date.value === '') return
         //obtenemos las citas
         const {data} = await AppointmentApi.getByDate(date.value)
-        appointmentsByDate.value = data
+        
+
+        if(appoimentId.value){
+            appointmentsByDate.value = data.filter(appointment => appointment._id !== appoimentId.value)
+            time.value = data.filter(appointment => appointment._id === appoimentId.value)[0].time
+        }else{
+            appointmentsByDate.value = data
+        }
     })
 
     function setSelectedAppointment(appointment){
         services.value=appointment.services
         date.value= convertToDDMMYYYY(appointment.date)
         time.value=appointment.time
+        appoimentId.value = appointment._id
     }
 
     function onServiceSelected(service){
