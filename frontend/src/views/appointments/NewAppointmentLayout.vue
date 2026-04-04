@@ -1,7 +1,14 @@
 <script setup>
 import { useRoute } from 'vue-router';
+import { useAppointmentsStore } from '@/stores/appointments';
+import { onMounted } from 'vue';
+
+const appointment = useAppointmentsStore()
 const route=useRoute()
-    
+
+onMounted(()=>{
+    appointment.resetState()
+})
 </script>
 
 <template>
