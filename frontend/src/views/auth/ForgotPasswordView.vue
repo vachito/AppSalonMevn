@@ -1,5 +1,6 @@
 <script setup>
     import { inject } from 'vue';
+    import { reset } from '@formkit/core';
     import AuthApi from '@/api/AuthApi';
 
     const toast = inject('toast')
@@ -11,6 +12,7 @@
                 message: data.msg,
                 type:'success'
             })
+            reset('forgotPassword')
         } catch (error) {
             toast.open({
                 message: error.response.data.msg,
@@ -25,7 +27,7 @@
     <p class=" text-xl text-white text-center my-5">Recupera el acceso a tu cuenta</p>
 
     <FormKit
-        id="loginForm"
+        id="forgotPassword"
         type="form"
         :actions="false"
         incomplete-message="No se pudo enviar los datos, revisa las notificaciones"
