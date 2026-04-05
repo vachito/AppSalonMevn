@@ -20,6 +20,10 @@
             })
         }
     })
+
+    const handleSubmit = async ({password}) => {
+        console.log(password)
+    }
 </script>
 
 <template>

@@ -136,7 +136,27 @@ const verifyPasswordResetToken = async (req,res) =>{
 }
 
 const updatePassword = async (req,res) =>{
+    const {token} = req.params
+
+    const user = await User.findOne({token})
+    if(!user){
+        const error = new Error('Hubo un error, Token no válido')
+        return res.status(400).json({msg: error.message})
+    }
+
+    const {password} = req.body
     
+    try {
+        user.token=''
+        user.password=password
+        await user.save()
+
+        res.json({
+            msg: 'Password modificado correctamente'
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const user = async (req, res) => {
