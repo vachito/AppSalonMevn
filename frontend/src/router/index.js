@@ -8,7 +8,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: {name:'login'},
+      redirect: {name:'my-appointments'},
       component: HomeView,
     },
     {
