@@ -13,9 +13,15 @@ const router = createRouter({
     },
     {
       path:'/admin',
-      name:'admin',
       component: ()=> import('../views/admin/AdminLayout.vue'),
-      meta:{requiresAdmin: true}
+      meta:{requiresAdmin: true},
+      children:[
+        {
+          path:'/admin',
+          name:'admin',
+          component: ()=> import('../views/admin/AppointmentsView.vue'), 
+        }
+      ]
     },
     {
       path: '/reservaciones',
@@ -115,7 +121,6 @@ router.beforeEach(async (to) =>{
     return true
   }
 })
-
 
 router.beforeEach(async (to) =>{
   const requiresAdmin = to.matched.some(url => url.meta.requiresAdmin)
