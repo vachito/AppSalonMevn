@@ -95,8 +95,13 @@ router.beforeEach(async (to) =>{
   const requiresAuth = to.matched.some(url => url.meta.requiresAuth)
   if(requiresAuth){
     try {
-      await AuthApi.auth()
-      return true
+      const {data: {user}} = await AuthApi.auth()
+      
+      if(user.admin){
+        return {name:'forgot-password'}  
+      }else{
+        return true
+      }
     } catch (error) {
       return {name:'login'}
     }
