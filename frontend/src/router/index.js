@@ -12,6 +12,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path:'/admin',
+      name:'admin',
+      component: ()=> import('../views/admin/AdminLayout.vue')
+    },
+    {
       path: '/reservaciones',
       name: 'appointments',
       component: AppointmentsLayout,
@@ -98,7 +103,7 @@ router.beforeEach(async (to) =>{
       const {data: {user}} = await AuthApi.auth()
       
       if(user.admin){
-        return {name:'forgot-password'}  
+        return {name:'admin'}  
       }else{
         return true
       }
