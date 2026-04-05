@@ -121,6 +121,24 @@ const forgotPassword = async (req,res) =>{
     }
 }
 
+const verifyPasswordResetToken = async (req,res) =>{
+    
+}
+
+const updatePassword = async (req,res) =>{
+    const {token} = req.params
+
+    const isValidToken = await User.findOne({token})
+    if(!isValidToken){
+        const error = new Error('Hubo un error, Token no válido')
+        res.status(400).json({msg: error.message})
+    }
+
+    res.json({
+        msg: 'Token valido'
+    })
+}
+
 const user = async (req, res) => {
     const {user} = req
     res.json({user})
@@ -131,5 +149,7 @@ export {
     verifyAccount,
     login,
     forgotPassword,
+    verifyPasswordResetToken,
+    updatePassword,
     user
 }
